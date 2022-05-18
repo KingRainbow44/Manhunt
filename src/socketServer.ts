@@ -16,7 +16,9 @@ const server: https.Server = https.createServer({
 const socketServer: Server = new Server({ server });
 
 socketServer.on('connection', connect);
-server.listen(6369);
+server.listen(6369, () => {
+    console.log("Server started on port 6369");
+});
 
 /**
  * Event handler for websocket connections.
