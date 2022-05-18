@@ -1,9 +1,14 @@
 import {address, apiKey} from "./index";
 import express, {Express} from 'express';
-import {createServer, Server} from "http";
+import {createServer, Server} from "https";
+
+import {readFileSync} from "fs";
 
 const app: Express = express();
-const server: Server = createServer(app);
+const server: Server = createServer({
+    key: readFileSync(process.env["SSL-KEY"]),
+    cert: readFileSync(process.env["SSL-CERT"])
+}, app);
 
 app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/views`);

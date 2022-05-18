@@ -43,7 +43,7 @@ function join() {
 
 /**
  * Sends a message as the player.
- */
+ */ 
 function sendMessage() {
     if(!username) return;
     

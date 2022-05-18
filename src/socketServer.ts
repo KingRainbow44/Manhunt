@@ -1,15 +1,22 @@
 import {RawData, Server, WebSocket} from "ws";
+import {IncomingMessage} from "http";
+import {readFileSync} from "fs";
+import * as https from "https";
+
 import Packet from "./game/packets";
 import Client from "./game/client";
 import GameServer from "./game/gameServer";
-import {IncomingMessage} from "http";
 
 export const gameServer: GameServer = new GameServer();
-const server: Server = new Server({port: 6369}, () => {
-    console.log("Server started on port 6369");
-});
 
-server.on('connection', connect);
+const server: https.Server = https.createServer({
+    cert: readFileSync(process.env["SSL-CERT"]),
+    key: readFileSync(process.env["SSL-KEY"])
+});
+const socketServer: Server = new Server({ server });
+
+socketServer.on('connection', connect);
+server.listen(6369);
 
 /**
  * Event handler for websocket connections.
