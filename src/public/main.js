@@ -4,6 +4,7 @@ const {LatLng, Map, Marker, MapTypeId, NavigationControlStyle} = google.maps;
 /* Define global variables. */
 let map = undefined, markers = {};
 let geolocation = undefined;
+let username = undefined;
 let debug = false;
 
 // Call methods on initialization.

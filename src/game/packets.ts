@@ -17,6 +17,8 @@ export interface GameEventNotify extends Packet {
 
 export interface MessageNotify extends Packet {
     message: string;
+    
+    username?: string;
 }
 
 export interface RefreshMapRequest extends Packet {

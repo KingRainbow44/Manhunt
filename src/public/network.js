@@ -41,6 +41,8 @@ function parseMessage(message) {
             handleGameEvent(type, data);
             break;
         case packetIds.MessageNotify:
+            const {username, message} = packet;
+            handleMessage(username, message);
             break;
         case packetIds.LocationRequestNotify:
             if(role !== 0) return; // FUGITIVE

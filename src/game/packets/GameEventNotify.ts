@@ -16,5 +16,9 @@ export default function (player: Client, packet: GameEventNotify) {
             const role: number = data["role"];
             player.setRole(role);
             break;
+        case gameEvents.JOIN_GAME:
+            const username: string = data["username"];
+            player.setUsername(username);
+            break;
     }
 }

@@ -26,6 +26,11 @@
     <body>
         <!-- This is where UI elements are placed. -->
         <div id="ui">
+            <div id="nameInput">
+                <input id="username" type="text" autocomplete="off" />
+                <input id="submit" type="submit" value="Join Game" onclick="join()"/>
+            </div>
+            
             <button onclick="refreshMap();">Refresh Map</button>
             <button onclick="changeRole(1);">Change to Hunter</button>
             <button onclick="changeRole(0);">Change to Runner</button>
@@ -37,7 +42,16 @@
             </div>
         </div>
         
-        <br> <!-- Line break between map & UI. -->
+        <br> <!-- Line break between chat & UI. -->
+
+        <!-- This is where chat messages are placed. -->
+        <div id="chat">
+            <div id="chatContainer" class="box"></div>
+            <input id="chatInput" type="text" autocomplete="off" />
+            <input id="chatSubmit" onclick="sendMessage()" type="submit" value="Send" />
+        </div>
+
+        <br> <!-- Line break between map & chat. -->
         
         <!-- This is where the map is placed. -->
         <div id="map"></div>

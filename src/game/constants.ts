@@ -1,7 +1,8 @@
 export const gameEvents = {
     SWITCH_ROLES: 0,
     START_GAME: 1,
-    STOP_GAME: 2
+    STOP_GAME: 2,
+    JOIN_GAME: 3
 };
 
 export const roles = {

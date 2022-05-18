@@ -43,5 +43,7 @@ function updateTarget(username, coordinates) {
  * Attempts to refresh the map.
  */
 function refreshMap() {
-    
+    pushPacket({
+        packetId: packetIds.RefreshMapRequest
+    });
 }

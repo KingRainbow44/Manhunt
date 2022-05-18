@@ -25,7 +25,9 @@ function connect(socket: WebSocket, request: IncomingMessage): void {
     socket.on('message', data => message(client, data));
     socket.on('close', () => {
         gameServer.removePlayer(client);
-        console.info(`Player ${client.getIdentifier()} disconnected.`);
+        
+        const username: string = client.getUsername();
+        console.info(`Player ${username.length == 0 ? client.getIdentifier() : username} disconnected.`);
     });
 }
 
