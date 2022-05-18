@@ -50,6 +50,8 @@ function sendMessage() {
     const messageField = document.getElementById("chatInput");
     const message = messageField.value.trim();
     
+    if(message.length === 0) return;
+    
     pushPacket({
         packetId: packetIds.MessageNotify, message
     });

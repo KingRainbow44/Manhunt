@@ -15,6 +15,9 @@
         <script src="/public/runner.js"></script>
         <script src="/public/hunter.js"></script>
         <script src="/public/game.js"></script>
+
+        <!-- Load HTML from Express. -->
+        <script src="<%= script %>"></script>
         
         <!-- Load data. -->
         <script>
@@ -37,8 +40,8 @@
             
             <!-- Administrative UI actions. -->
             <div id="admin" style="display: none">
-                <button onclick="">Start Game</button>
-                <button onclick="">Stop Game</button>
+                <button onclick="startGame();">Start Game</button>
+                <button onclick="endGame();">Stop Game</button>
             </div>
         </div>
         

@@ -1,6 +1,7 @@
 import {RawData, Server, WebSocket} from "ws";
 import {IncomingMessage} from "http";
 import {readFileSync} from "fs";
+import * as http from "http";
 import * as https from "https";
 
 import Packet from "./game/packets";
@@ -9,10 +10,15 @@ import GameServer from "./game/gameServer";
 
 export const gameServer: GameServer = new GameServer();
 
-const server: https.Server = https.createServer({
-    cert: readFileSync(process.env["SSL-CERT"]),
-    key: readFileSync(process.env["SSL-KEY"])
-});
+let server: http.Server;
+if(process.env["SSL-KEY"] && process.env["SSL-CERT"]) {
+    server = https.createServer({
+        key: readFileSync(process.env["SSL-KEY"]),
+        cert: readFileSync(process.env["SSL-CERT"])
+    });
+} else {
+    server = http.createServer();
+}
 const socketServer: Server = new Server({ server });
 
 socketServer.on('connection', connect);

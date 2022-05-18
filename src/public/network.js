@@ -61,12 +61,14 @@ function handleGameEvent(type, data) {
         default:
             return;
         case gameEvents.START_GAME:
-            if(role === 0)
-                startRunning();
+            if(role === 0) 
+                startRunning(); 
+            else startHunting();
             break;
         case gameEvents.STOP_GAME:
             if(role === 0)
                 stopRunning();
+            else stopHunting()
             break;
     }
 }
@@ -82,5 +84,6 @@ const packetIds = {
 const gameEvents = {
     SWITCH_ROLES: 0,
     START_GAME: 1,
-    STOP_GAME: 2
+    STOP_GAME: 2,
+    JOIN_GAME: 3
 };

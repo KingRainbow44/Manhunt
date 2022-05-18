@@ -1,20 +1,30 @@
 import {address, apiKey} from "./index";
 import express, {Express} from 'express';
-import {createServer, Server} from "https";
+import * as http from "http";
+import * as https from "https";
 
 import {readFileSync} from "fs";
 
 const app: Express = express();
-const server: Server = createServer({
-    key: readFileSync(process.env["SSL-KEY"]),
-    cert: readFileSync(process.env["SSL-CERT"])
-}, app);
+
+let server: http.Server;
+if(process.env["SSL-KEY"] && process.env["SSL-CERT"]) {
+    server = https.createServer({
+        key: readFileSync(process.env["SSL-KEY"]),
+        cert: readFileSync(process.env["SSL-CERT"])
+    }, app);
+} else {
+    server = http.createServer(app);
+}
 
 app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/views`);
 
 app.all('/', (request, response) => {
-    response.render('index', {apiKey: apiKey, address: address});
+    const responseOptions = {
+        apiKey: apiKey, address: address,
+        script: request.query.isAdmin ? '/public/admin.js' : ''
+    }; response.render('index', responseOptions);
 });
 app.use('/public', express.static(`${__dirname}/public`));
 
