@@ -6,3 +6,6 @@ node_modules/
 
 # VS Code
 .vscode/
+
+# API Key for Google Maps
+src/public/keys.js
