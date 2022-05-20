@@ -1,7 +1,7 @@
 import Client from "../client";
 import {GameEventNotify} from "../packets";
 
-import {gameEvents} from "../constants";
+import {gameEvents, killReasons, roles} from "../constants";
 import {gameServer} from "../../socketServer";
 
 /**
@@ -18,6 +18,8 @@ export default function (player: Client, packet: GameEventNotify) {
             break;
         case gameEvents.SWITCH_ROLES:
             const role: number = data["role"];
+            if(player.getRole() == roles.FUGITIVE && role == roles.HUNTER)
+                gameServer.killPlayer(player, killReasons.CAPTURED);
             player.setRole(role);
             break;
         case gameEvents.JOIN_GAME:

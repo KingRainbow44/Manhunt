@@ -7,7 +7,7 @@ import {roles} from "./constants";
 
 export class GameData {
     private role: number = roles.FUGITIVE;
-    private username: string = "";
+    private username: string = "Someone";
 
     /**
      * Returns the player's role in the game.

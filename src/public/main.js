@@ -103,6 +103,18 @@ function updateMarker(position, label) {
 }
 
 /**
+ * Removes a marker from the map.
+ * @param {string} label The label of the marker.
+ */
+function clearMarker(label) {
+    if(map === undefined) return;
+    if(markers[label] === undefined) return;
+    
+    markers[label].setMap(null);
+    delete markers[label];
+}
+
+/**
  * Clear all markers from the map.
  */
 function clearMarkers() {

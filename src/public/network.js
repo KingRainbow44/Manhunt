@@ -64,11 +64,19 @@ function handleGameEvent(type, data) {
             if(role === 0) 
                 startRunning(); 
             else startHunting();
+            
+            alert('The game has started!');
             break;
         case gameEvents.STOP_GAME:
             if(role === 0)
                 stopRunning();
             else stopHunting()
+            
+            alert('The game has ended!');
+            break;
+        case gameEvents.LEAVE_GAME:
+            const {username, reason} = data; clearMarker(username);
+            alert(`${username} has ${reason === killReasons.LEFT ? 'left the game.' : 'been captured!'}`);
             break;
     }
 }
@@ -85,5 +93,11 @@ const gameEvents = {
     SWITCH_ROLES: 0,
     START_GAME: 1,
     STOP_GAME: 2,
-    JOIN_GAME: 3
+    JOIN_GAME: 3,
+    LEAVE_GAME: 4
+};
+
+const killReasons = {
+    LEFT: 0,
+    CAPTURED: 1
 };

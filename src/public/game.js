@@ -34,7 +34,7 @@ function join() {
     
     pushPacket({
         packetId: packetIds.GameEventNotify,
-        type: 3, // JOIN_GAME
+        type: gameEvents.JOIN_GAME,
         data: {username}
     });
     
