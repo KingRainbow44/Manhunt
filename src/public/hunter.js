@@ -18,6 +18,12 @@ function startHunting() {
     if(map !== undefined) {
         show('map');
     }
+    
+    taskId = geolocation.watchPosition(position => {
+        const coordinates = position.coords;
+        const {latitude, longitude} = coordinates;
+        updateMarker(new LatLng(latitude, longitude), "You");
+    }, () => alert('Unable to get location.'));
 }
 
 /**
@@ -27,6 +33,8 @@ function stopHunting() {
     if(map !== undefined) {
         hide('map');
     }
+    
+    geolocation.clearWatch(taskId);
 }
 
 /**
