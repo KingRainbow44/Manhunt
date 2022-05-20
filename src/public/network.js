@@ -75,7 +75,7 @@ function handleGameEvent(type, data) {
             alert('The game has ended!');
             break;
         case gameEvents.LEAVE_GAME:
-            const {username, reason} = data; clearMarker(username);
+            const {username, reason} = data; clearMarker(username.trim());
             alert(`${username} has ${reason === killReasons.LEFT ? 'left the game.' : 'been captured!'}`);
             break;
     }

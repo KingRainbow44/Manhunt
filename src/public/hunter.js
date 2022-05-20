@@ -44,7 +44,7 @@ function stopHunting() {
  */
 function updateTarget(username, coordinates) {
     // Update the marker with the specified username.
-    updateMarker(new LatLng(coordinates.latitude, coordinates.longitude), username);
+    updateMarker(new LatLng(coordinates.latitude, coordinates.longitude), username.trim());
 }
 
 /**

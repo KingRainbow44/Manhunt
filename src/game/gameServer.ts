@@ -72,7 +72,7 @@ export default class GameServer {
             data: {username: target.getUsername(), reason}
         }, target);
         
-        if(this.inGame() && this.remainingRunners <= 0) {
+        if(this.inGame() && --this.remainingRunners <= 0) {
             gameServer.setGameStatus(false);
             gameServer.broadcastPacket(<GameEventNotify> {
                 packetId: packetIds.GameEventNotify,
@@ -108,6 +108,7 @@ export default class GameServer {
      */
     setGameStatus(status: boolean) {
         this.isInGame = status;
+        
         if(status)
             this.remainingRunners = length(this.getAllOf(roles.FUGITIVE));
     }
