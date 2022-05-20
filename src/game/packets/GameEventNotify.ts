@@ -12,19 +12,21 @@ export default function (player: Client, packet: GameEventNotify) {
     let data: object = packet.data;
     switch(packet.type) {
         default:
-            const players: object = gameServer.getPlayers();
-            for (const identifier in players)
-                player.getIdentifier() != identifier && players[identifier].sendPacket(packet);
             break;
         case gameEvents.SWITCH_ROLES:
             const role: number = data["role"];
-            if(player.getRole() == roles.FUGITIVE && role == roles.HUNTER)
+            if(gameServer.inGame() && player.getRole() == roles.FUGITIVE && role == roles.HUNTER)
                 gameServer.killPlayer(player, killReasons.CAPTURED);
             player.setRole(role);
             break;
         case gameEvents.JOIN_GAME:
             const username: string = data["username"];
             player.setUsername(username);
+            break;
+        case gameEvents.START_GAME:
+        case gameEvents.STOP_GAME:
+            gameServer.broadcastPacket(packet);
+            gameServer.setGameStatus(!gameServer.inGame());
             break;
     }
 }

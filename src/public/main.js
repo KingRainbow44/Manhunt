@@ -68,7 +68,7 @@ function pushPacket(packet) {
 function createMap(position) {
     const mapElement = document.getElementById('map');
     map = new Map(mapElement, {
-        zoom: 14, center: position,
+        zoom: 30, center: position,
         mapTypeId: MapTypeId.ROADMAP,
         mapTypeControl: false,
         navigationControlOptions: {style: NavigationControlStyle.SMALL}
