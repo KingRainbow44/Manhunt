@@ -1,9 +1,9 @@
-import {address, apiKey} from "./index";
 import express, {Express} from 'express';
 import * as http from "http";
 import * as https from "https";
 
 import {readFileSync} from "fs";
+import {index} from "./routes/indexEndpoint";
 
 const app: Express = express();
 
@@ -20,12 +20,7 @@ if(process.env["SSL-KEY"] && process.env["SSL-CERT"]) {
 app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/views`);
 
-app.all('/', (request, response) => {
-    const responseOptions = {
-        apiKey: apiKey, address: address,
-        script: request.query.isAdmin ? '/public/admin.js' : ''
-    }; response.render('index', responseOptions);
-});
+app.all('/', index);
 app.use('/public', express.static(`${__dirname}/public`));
 
 server.listen(6287, () => {

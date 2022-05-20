@@ -24,6 +24,16 @@
             // Create a network interface.
             createInterface("<%= address %>");
         </script>
+        
+        <!-- Meta tags. -->
+        <meta name="viewport" content="width=device-width" />
+
+        <meta content="Magix's IRL Manhunt" property="og:site_name">
+        <meta content="Manhunt" property="og:title">
+        <meta content="Join a game of manhunt with <%= playerCount %> others!" property="og:description">
+        <meta content="https://cdn.ponjo.club/raw/ef78573c86dac2f9b4d2cface180df8e" property="og:image:url">
+        <meta content="https://cdn.ponjo.club/raw/ef78573c86dac2f9b4d2cface180df8e" property="og:image:secure_url">
+        <meta content="<%= color %>" property="theme-color">
     </head>
 
     <body>
