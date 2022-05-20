@@ -8,8 +8,14 @@ let websocket = undefined;
 function createInterface(address) {
     websocket = new WebSocket(address);
     websocket.onopen = () => console.info("Connected to server.");
-    websocket.onclose = () => console.info("Disconnected from server.");
-    websocket.onerror = (error) => console.error("An error occurred between the server and client.", error);
+    websocket.onclose = () => {
+        console.info("Disconnected from server.");
+        setTimeout(() => createInterface(address), 1000);
+    };
+    websocket.onerror = (error) => {
+        console.error("An error occurred between the server and client.", error);
+        websocket.close();
+    };
     websocket.onmessage = parseMessage;
 }
 
